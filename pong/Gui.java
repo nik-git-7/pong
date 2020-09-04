@@ -50,7 +50,7 @@ public class Gui extends JFrame {
 
         this.setContentPane(root);
 
-        Thread performKey1 = new Thread(() -> {
+        Thread performKey = new Thread(() -> {
             while (true) {
                 for (int key : pressedKeys) {
                     switch (key) {
@@ -60,23 +60,6 @@ public class Gui extends JFrame {
                         case KeyEvent.VK_D:
                             gamePanel.moveRacket1Down();
                             break;
-                        default:
-                            break;
-                    }
-                }
-                try {
-                    Thread.sleep(8);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        performKey1.start();
-
-        Thread performKey2 = new Thread(() -> {
-            while (true) {
-                for (int key : pressedKeys) {
-                    switch (key) {
                         case KeyEvent.VK_UP:
                             gamePanel.moveRacket2Up();
                             break;
@@ -94,7 +77,7 @@ public class Gui extends JFrame {
                 }
             }
         });
-        performKey2.start();
+        performKey.start();
 
         this.addKeyListener(new KeyListener() {
             @Override
